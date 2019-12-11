@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./styles/salesforce-lightning-design-system-2.6.0/assets/styles/salesforce-lightning-design-system.min.css">
+  <style>
+    .app {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+    }
+
+    .slds-button {
+      height: 300px;
+      width: 300px;
+      margin: 2em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song1'>1 - Dance With You by Jay Sean ft. Juggy D</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song2'>2 - Yeh Dil Na Hota Bechara by Kishore Kumar</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song3'>3 - Chanda Chamke by Babul Supriyo/Mahalaxmi Iyer/Fanaa</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song4'>4 - Jai Jai Shiv Shankar by Vishal & Shekhar</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song5'>5 - Song Title</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song6'>6 - Song Title</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song7'>7 - Song Title</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song8'>8 - Song Title</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song9'>9 - Song Title</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song10'>10 - Song Title</button>
+
+
+
+
+    <!-- <button class="slds-button slds-button_neutral audio-btn" data-audio='marriott-meeting-2'>Meeting</button> -->
+
+    <!-- <button class="slds-button slds-button_neutral audio-btn" data-audio='marriott-meeting'>Meeting</button> -->
+    <!-- <button class="slds-button slds-button_neutral audio-btn" data-audio='marriott-driver'>Yes to Driver</button> -->
+    <!-- <button class="slds-button slds-button_neutral audio-btn" data-audio='marriott-weather'>Weather</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='song-3'>Relaxing Song</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio=''>Song Off</button>
+    <button class="slds-button slds-button_neutral audio-btn" data-audio='marriott-concert'>Concert</button> -->
+  </div>
+
+  <audio id='clip-player'>
+    <source src='./audio/Marriott-Gametime.m4a'>
+  </audio>
+
+  <script>
+    var player = document.querySelector('#clip-player')
+    var source = player.querySelector('source')
+
+    Array.prototype.slice.call(document.querySelectorAll('.audio-btn')).map(function (button) {
+      button.addEventListener('click', function () {
+        playRecord(this.getAttribute('data-audio'));
+      })
+    })
+
+    $(document).ready(function () {
+      $('body').on('keyup', function (event) {
+        if (event.which == 49) {
+          playRecord('Recording1');
+        }
+        if (event.which == 50) {
+          playRecord('Recording2');
+        }
+        if (event.which == 51) {
+          playRecord('Recording3');
+        }
+      })
+    })
+
+    function playRecord(name) {
+      player.currentTime = 0
+      player.pause()
+      source.setAttribute('src', './audio/' + name + '.m4a')
+      player.load()
+      player.play()
+    }
+  </script>
+</body>
+
+</html>
